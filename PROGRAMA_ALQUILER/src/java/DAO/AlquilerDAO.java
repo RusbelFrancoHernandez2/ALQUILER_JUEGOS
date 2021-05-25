@@ -95,6 +95,7 @@ public class AlquilerDAO {
     private Map<String, ?> cargarQuerys (){
         Map<String, Object> row = new HashMap<>();
         row.put("Insert1","INSERT INTO ALQUILER (ID_ALQUILER, ID_PERSONA, ID_JUEGO, FECHA_ENTREGA, FECHA_REGISTRO, ENTREGADO, VALOR_VENTA) VALUES (S_PERSONAS_IDPERSONAS.NEXTVAL,?, ?, ?, ?, ?, ?)");
+        row.put("Select1","SELECT * FORM ALQUILER WHERE ID_PERSONA = ?");
         
         return row;
     }

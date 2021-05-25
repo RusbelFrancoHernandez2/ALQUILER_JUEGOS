@@ -88,7 +88,7 @@ public class JuegosDAO {
             Connection connection = conexion.conn();
             Map<String, ?> sql = cargarQuerys();
             PreparedStatement pstmt = connection.prepareStatement(sql.get("Select1").toString());
-            pstmt.setInt(9, juegos.getId_juego());
+            pstmt.setInt(1, juegos.getId_juego());
             ResultSet resultSet = pstmt.executeQuery();
             lista = rsToList(resultSet);
 
@@ -126,6 +126,7 @@ public class JuegosDAO {
         Map<String, Object> row = new HashMap<>();
         row.put("Insert1","INSERT INTO JUEGOS (ID_JUEGO, TITULO, GENERO, YEAR, PROTAGONISTAS, DIRECTOR, PRODUCTOR, TECNOLOGIA, PRECIO_ALQUILER) VALUES (S_JUEGOS_IDJUEGO.NEXTVAL,?,?,?,?,?,?,?,?)");
         row.put("Select1","SELECT * FORM JUEGOS WHERE ID_JUEGO = ?");
+        row.put("Update1","UPDATE JUEGOS SET TITULO = ?, GENERO = ?, YEAR = ?, PROTAGONISTAS = ?, DIRECTOR = ?, PRODUCTOR = ?, TECNOLOGIA = ?, PRECIO_ALQUILER = ? WHERE ID_JUEGO = ?");
         return row;
     }
         
