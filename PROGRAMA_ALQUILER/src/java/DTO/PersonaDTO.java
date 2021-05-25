@@ -5,27 +5,29 @@
  */
 package DTO;
 
-import java.sql.Date;
+import java.util.Date;
+
+
 
 /**
  *
  * @author rfranco
  */
-public class Personas {
+public class PersonaDTO {
     
-    private String id_personas;
+    private int id_personas;
     private String nombre;
     private String tipo_documento;
     private String numero_documento;
     private Date fecha_nacimiento;
     private String direccion;
-    private int celular;
+    private long celular;
 
-    public String getId_personas() {
+    public int getId_personas() {
         return id_personas;
     }
 
-    public void setId_personas(String id_personas) {
+    public void setId_personas(int id_personas) {
         this.id_personas = id_personas;
     }
 
@@ -69,11 +71,11 @@ public class Personas {
         this.direccion = direccion;
     }
 
-    public int getCelular() {
+    public long getCelular() {
         return celular;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(long celular) {
         this.celular = celular;
     }
 

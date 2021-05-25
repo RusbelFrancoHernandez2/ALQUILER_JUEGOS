@@ -5,29 +5,31 @@
  */
 package DTO;
 
-import java.sql.Date;
+import java.util.Date;
+
+
 
 /**
  *
  * @author rfranco
  */
-public class Juegos {
+public class JuegosDTO {
     
-    private String id_juego;
+    private int id_juego;
     private String titulo;
     private String genero;
     private Date year;
     private String protagonistas;
     private String director;
-    private String producto;
+    private String productor;
     private String tecnologia;
-    private Double precio_alquiler;
+    private long precio_alquiler;
 
-    public String getId_juego() {
+    public int getId_juego() {
         return id_juego;
     }
 
-    public void setId_juego(String id_juego) {
+    public void setId_juego(int id_juego) {
         this.id_juego = id_juego;
     }
 
@@ -71,12 +73,12 @@ public class Juegos {
         this.director = director;
     }
 
-    public String getProducto() {
-        return producto;
+    public String getProductor() {
+        return productor;
     }
 
-    public void setProducto(String producto) {
-        this.producto = producto;
+    public void setProductor(String productor) {
+        this.productor = productor;
     }
 
     public String getTecnologia() {
@@ -87,17 +89,17 @@ public class Juegos {
         this.tecnologia = tecnologia;
     }
 
-    public Double getPrecio_alquiler() {
+    public long getPrecio_alquiler() {
         return precio_alquiler;
     }
 
-    public void setPrecio_alquiler(Double precio_alquiler) {
+    public void setPrecio_alquiler(long precio_alquiler) {
         this.precio_alquiler = precio_alquiler;
     }
 
     @Override
     public String toString() {
-        return "Juegos{" + "id_juego=" + id_juego + ", titulo=" + titulo + ", genero=" + genero + ", year=" + year + ", protagonistas=" + protagonistas + ", director=" + director + ", producto=" + producto + ", tecnologia=" + tecnologia + ", precio_alquiler=" + precio_alquiler + '}';
+        return "Juegos{" + "id_juego=" + id_juego + ", titulo=" + titulo + ", genero=" + genero + ", year=" + year + ", protagonistas=" + protagonistas + ", director=" + director + ", productor=" + productor + ", tecnologia=" + tecnologia + ", precio_alquiler=" + precio_alquiler + '}';
     }
     
        
