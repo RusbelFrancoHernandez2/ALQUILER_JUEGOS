@@ -50,14 +50,14 @@ public class PersonaDAO {
         }
     }
 
-    public List<Map<String, ?>> forList(PersonaDTO personas) {
+    public List<Map<String, ?>> forList(String  numeroDocumento) {
 
         List<Map<String, ?>> lista;
         Map<String, ?> sql = cargarQuerys();
         try {
             Connection connection = conexion.conn();
             PreparedStatement pstmt = connection.prepareStatement(sql.get("Select1").toString());
-            pstmt.setString(1, personas.getNumero_documento());
+            pstmt.setString(1, numeroDocumento);
             ResultSet resultSet = pstmt.executeQuery();
             lista = rsToList(resultSet);
 

@@ -52,18 +52,20 @@ public class AlquilerDAO {
         }
     }
         
-    public List<Map<String, ?>> forList(String query) {
+    public List<Map<String, ?>> forList(int id_persona) {
 
         List<Map<String, ?>> lista;
 
         try {
             Connection connection = conexion.conn();
-            Statement st = connection.createStatement();
-            ResultSet resultSet = st.executeQuery(query);
+            Map<String, ?> sql = cargarQuerys();
+            PreparedStatement pstmt = connection.prepareStatement(sql.get("Select1").toString());
+            pstmt.setInt(1, id_persona);
+            ResultSet resultSet = pstmt.executeQuery();
             lista = rsToList(resultSet);
 
             // Cerramos las conexiones, en orden inverso a su apertura
-            st.close();
+            resultSet.close();
             connection.close();
 
             System.out.println("datos consultados con éxito a la base de datos.");
@@ -73,7 +75,30 @@ public class AlquilerDAO {
         }
         return lista;
     }
-    
+        public List<Map<String, ?>> forListDate(String date1, String date2) {
+
+        List<Map<String, ?>> lista;
+
+        try {
+            Connection connection = conexion.conn();
+            Map<String, ?> sql = cargarQuerys();
+            PreparedStatement pstmt = connection.prepareStatement(sql.get("Select2").toString());
+            pstmt.setString(1, date1);
+            pstmt.setString(2, date2);
+            ResultSet resultSet = pstmt.executeQuery();
+            lista = rsToList(resultSet);
+
+            // Cerramos las conexiones, en orden inverso a su apertura
+            pstmt.close();
+            connection.close();
+
+            System.out.println("datos consultados con éxito a la base de datos.");
+        } catch (SQLException e) {
+            System.out.println("the exceptio forList is=" + e);
+            lista = null;
+        }
+        return lista;
+    }
     public List<Map<String, ?>> rsToList(ResultSet rs)
             throws SQLException {
         ResultSetMetaData md = rs.getMetaData();
@@ -95,7 +120,8 @@ public class AlquilerDAO {
     private Map<String, ?> cargarQuerys (){
         Map<String, Object> row = new HashMap<>();
         row.put("Insert1","INSERT INTO ALQUILER (ID_ALQUILER, ID_PERSONA, ID_JUEGO, FECHA_ENTREGA, FECHA_REGISTRO, ENTREGADO, VALOR_VENTA) VALUES (S_PERSONAS_IDPERSONAS.NEXTVAL,?, ?, ?, ?, ?, ?)");
-        row.put("Select1","SELECT * FORM ALQUILER WHERE ID_PERSONA = ?");
+        row.put("Select1","SELECT * FROM ALQUILER WHERE ID_PERSONA = ?");
+        row.put("Select2","SELECT *  FROM ALQUILER  WHERE FECHA_REGISTRO BETWEEN to_date(? ,'dd/mm/yyyy') and to_date(?,'dd/mm/yyyy')");
         
         return row;
     }

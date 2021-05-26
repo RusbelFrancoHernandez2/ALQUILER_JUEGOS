@@ -80,15 +80,14 @@ public class JuegosDAO {
         }
     }
         
-    public List<Map<String, ?>> forList(JuegosDTO juegos) {
+    public List<Map<String, ?>> forList() {
 
         List<Map<String, ?>> lista;
 
         try {
             Connection connection = conexion.conn();
             Map<String, ?> sql = cargarQuerys();
-            PreparedStatement pstmt = connection.prepareStatement(sql.get("Select1").toString());
-            pstmt.setInt(1, juegos.getId_juego());
+            PreparedStatement pstmt = connection.prepareStatement(sql.get("Select2").toString());
             ResultSet resultSet = pstmt.executeQuery();
             lista = rsToList(resultSet);
 
@@ -104,6 +103,29 @@ public class JuegosDAO {
         return lista;
     }
     
+        public List<Map<String, ?>> selectJuego(String sentenciaSql,JuegosDTO juegos) {
+
+        List<Map<String, ?>> lista;
+
+        try {
+            Connection connection = conexion.conn();
+            Map<String, ?> sql = cargarQuerys();
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM JUEGOS WHERE ID_JUEGO = ?");
+            pstmt.setInt(1, juegos.getId_juego());
+            ResultSet resultSet = pstmt.executeQuery();
+            lista = rsToList(resultSet);
+
+            // Cerramos las conexiones, en orden inverso a su apertura
+            pstmt.close();
+            connection.close();
+
+            System.out.println("datos consultados con éxito a la base de datos.");
+        } catch (SQLException e) {
+            System.out.println("the exceptio forList is=" + e);
+            lista = null;
+        }
+        return lista;
+    }
     public List<Map<String, ?>> rsToList(ResultSet rs)
             throws SQLException {
         ResultSetMetaData md = rs.getMetaData();
@@ -125,8 +147,9 @@ public class JuegosDAO {
     private Map<String, ?> cargarQuerys (){
         Map<String, Object> row = new HashMap<>();
         row.put("Insert1","INSERT INTO JUEGOS (ID_JUEGO, TITULO, GENERO, YEAR, PROTAGONISTAS, DIRECTOR, PRODUCTOR, TECNOLOGIA, PRECIO_ALQUILER) VALUES (S_JUEGOS_IDJUEGO.NEXTVAL,?,?,?,?,?,?,?,?)");
-        row.put("Select1","SELECT * FORM JUEGOS WHERE ID_JUEGO = ?");
+        row.put("Select1","SELECT * FROM JUEGOS WHERE ID_JUEGO = ?");
         row.put("Update1","UPDATE JUEGOS SET TITULO = ?, GENERO = ?, YEAR = ?, PROTAGONISTAS = ?, DIRECTOR = ?, PRODUCTOR = ?, TECNOLOGIA = ?, PRECIO_ALQUILER = ? WHERE ID_JUEGO = ?");
+        row.put("Select2","SELECT * FROM JUEGOS");
         return row;
     }
         
