@@ -37,8 +37,8 @@ public class JuegosDAO {
             pstmt.setString(2, juegos.getGenero());
             pstmt.setTimestamp(3, new Timestamp(juegos.getYear().getTime()));
             pstmt.setString(4, juegos.getProtagonistas());
-            pstmt.setString(5, juegos.getProductor());
-            pstmt.setString(6, juegos.getDirector());
+            pstmt.setString(5, juegos.getDirector());
+            pstmt.setString(6, juegos.getProductor());
             pstmt.setString(7, juegos.getTecnologia());
             pstmt.setLong(8, juegos.getPrecio_alquiler());
             pstmt.executeUpdate();

@@ -47,7 +47,7 @@ public class CrearPersona extends HttpServlet {
             out.println("<title>Servlet crearPersona</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet crearPersona at " + status + "</h1>");
+            out.println("<h1>Servlet crear Persona " + status + "</h1>");
             out.println("<input type=\"button\" onclick=\" location.href = '/Asesor/page/CrearPersona.jsp'\" value=\"regresar\" name=\"boton\">");
             out.println("</body>");
             out.println("</html>");

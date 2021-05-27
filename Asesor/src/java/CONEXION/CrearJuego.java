@@ -49,7 +49,7 @@ public class CrearJuego extends HttpServlet {
             out.println("<title>Servlet CrearJuego</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CrearJuego at " + status + "</h1>");
+            out.println("<h1>Servlet Crear Juego " + status + "</h1>");
             out.println("<input type=\"button\" onclick=\" location.href = '/Asesor/page/CrearJuego.jsp'\" value=\"regresar\" name=\"boton\">");
             out.println("</body>");
             out.println("</html>");
