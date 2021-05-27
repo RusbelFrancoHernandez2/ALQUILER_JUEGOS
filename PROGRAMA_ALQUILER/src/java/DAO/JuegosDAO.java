@@ -24,9 +24,10 @@ import java.util.Map;
  * @author rfranco
  */
 public class JuegosDAO {
-            Conexion conexion = new Conexion();
 
-    public void insert(JuegosDTO juegos) {
+    Conexion conexion = new Conexion();
+
+    public void insert(JuegosDTO juegos) throws ClassNotFoundException {
 
         try {
             Connection connection = conexion.conn();
@@ -41,18 +42,18 @@ public class JuegosDAO {
             pstmt.setString(6, juegos.getDirector());
             pstmt.setString(7, juegos.getTecnologia());
             pstmt.setLong(8, juegos.getPrecio_alquiler());
-            ResultSet rs = pstmt.executeQuery();
+            pstmt.executeUpdate();
             // Cerramos las conexiones, en orden inverso a su apertura
             pstmt.close();
             connection.close();
 
-            System.out.println("base de datos actualizada" + rs);
+            System.out.println("base de datos actualizada");
         } catch (SQLException e) {
             System.out.println("the exceptio update is=" + e);
         }
     }
 
-        public void update(JuegosDTO juegos) {
+    public void update(JuegosDTO juegos) throws ClassNotFoundException {
 
         try {
             Connection connection = conexion.conn();
@@ -62,19 +63,19 @@ public class JuegosDAO {
 
             pstmt.setLong(1, juegos.getPrecio_alquiler());
             pstmt.setInt(2, juegos.getId_juego());
-            
-            ResultSet rs = pstmt.executeQuery();
+
+            pstmt.executeUpdate();
             // Cerramos las conexiones, en orden inverso a su apertura
             pstmt.close();
             connection.close();
 
-            System.out.println("base de datos actualizada" + rs);
+            System.out.println("base de datos actualizada");
         } catch (SQLException e) {
             System.out.println("the exceptio update is=" + e);
         }
     }
-        
-    public List<Map<String, ?>> forList() {
+
+    public List<Map<String, ?>> forList() throws ClassNotFoundException {
 
         List<Map<String, ?>> lista;
 
@@ -96,8 +97,8 @@ public class JuegosDAO {
         }
         return lista;
     }
-    
-        public List<Map<String, ?>> selectJuego(int idJuego) {
+
+    public List<Map<String, ?>> selectJuego(int idJuego) throws ClassNotFoundException {
 
         List<Map<String, ?>> lista;
 
@@ -120,6 +121,7 @@ public class JuegosDAO {
         }
         return lista;
     }
+
     public List<Map<String, ?>> rsToList(ResultSet rs)
             throws SQLException {
         ResultSetMetaData md = rs.getMetaData();
@@ -137,14 +139,14 @@ public class JuegosDAO {
 
         return results;
     }
-    
-    private Map<String, ?> cargarQuerys (){
+
+    private Map<String, ?> cargarQuerys() {
         Map<String, Object> row = new HashMap<>();
-        row.put("Insert1","INSERT INTO JUEGOS (ID_JUEGO, TITULO, GENERO, YEAR, PROTAGONISTAS, DIRECTOR, PRODUCTOR, TECNOLOGIA, PRECIO_ALQUILER) VALUES (S_JUEGOS_IDJUEGO.NEXTVAL,?,?,?,?,?,?,?,?)");
-        row.put("Select1","SELECT * FROM JUEGOS WHERE ID_JUEGO = ?");
-        row.put("Update1","UPDATE JUEGOS SET PRECIO_ALQUILER = ? WHERE ID_JUEGO = ?");
-        row.put("Select2","SELECT * FROM JUEGOS");
+        row.put("Insert1", "INSERT INTO alquiler_juegos.juegos (TITULO, GENERO, YEAR, PROTAGONISTAS, DIRECTOR, PRODUCTOR, TECNOLOGIA, PRECIO_ALQUILER) VALUES (?,?,?,?,?,?,?,?)");
+        row.put("Select1", "SELECT * FROM alquiler_juegos.juegos WHERE ID_JUEGO = ?");
+        row.put("Update1", "UPDATE alquiler_juegos.juegos SET PRECIO_ALQUILER = ? WHERE ID_JUEGO = ?");
+        row.put("Select2", "SELECT * FROM alquiler_juegos.juegos");
         return row;
     }
-        
+
 }

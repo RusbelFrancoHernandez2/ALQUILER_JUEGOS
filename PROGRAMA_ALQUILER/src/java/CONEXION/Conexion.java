@@ -14,19 +14,23 @@ import java.sql.SQLException;
  * @author rfranco
  */
 public class Conexion {
-        public Conexion() {
+
+    public Conexion() {
     }
 
     public Connection conn() throws SQLException {
 
         Connection connection;
+        String user = "alquiler";
+        String password = "Op3r4t1v0s*";
+        String url = "jdbc:mysql://localhost:3306/alquiler_juegos?useTimeZone=true&serverTimezone=UTC&autoReconnect=true&useSSL=false";
         try {
-            DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
             System.out.println("conectando a base de datos ....");
-            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "ALQUILER_JUEGOS", "123");
+            connection = DriverManager.getConnection(url, user, password);
 
-        } catch (Exception e) {
-            System.out.println("the exceptio is=" + e);
+        } catch (SQLException e) {
+            System.out.println("the exception is=" + e);
             connection = null;
         }
         return connection;

@@ -24,9 +24,10 @@ import java.util.Map;
  * @author rfranco
  */
 public class PersonaDAO {
-        Conexion conexion = new Conexion();
 
-    public void insert(PersonaDTO personas) {
+    Conexion conexion = new Conexion();
+
+    public void insert(PersonaDTO personas) throws ClassNotFoundException {
 
         try {
             Connection connection = conexion.conn();
@@ -39,18 +40,18 @@ public class PersonaDAO {
             pstmt.setTimestamp(4, new Timestamp(personas.getFecha_registro().getTime()));
             pstmt.setString(5, personas.getDireccion());
             pstmt.setLong(6, personas.getCelular());
-            ResultSet rs = pstmt.executeQuery();
+            pstmt.executeUpdate();
             // Cerramos las conexiones, en orden inverso a su apertura
             pstmt.close();
             connection.close();
 
-            System.out.println("base de datos actualizada" + rs);
+            System.out.println("base de datos actualizada");
         } catch (SQLException e) {
             System.out.println("the exceptio update is=" + e);
         }
     }
 
-    public List<Map<String, ?>> forList(String  numeroDocumento) {
+    public List<Map<String, ?>> forList(String numeroDocumento) throws ClassNotFoundException {
 
         List<Map<String, ?>> lista;
         Map<String, ?> sql = cargarQuerys();
@@ -72,7 +73,7 @@ public class PersonaDAO {
         }
         return lista;
     }
-    
+
     public List<Map<String, ?>> rsToList(ResultSet rs)
             throws SQLException {
         ResultSetMetaData md = rs.getMetaData();
@@ -90,12 +91,12 @@ public class PersonaDAO {
 
         return results;
     }
-    
-    private Map<String, ?> cargarQuerys (){
+
+    private Map<String, ?> cargarQuerys() {
         Map<String, Object> row = new HashMap<>();
-        row.put("Insert1","INSERT INTO PERSONAS (ID_PERSONA,NOMBRE,TIPO_DOCUMENTO,NUMERO_DOCUMENTO,FECHA_NACIMIENTO,DIRECCION,CELULAR) VALUES (S_PERSONAS_IDPERSONAS.NEXTVAL,?,?,?,?,?,?)");
-        row.put("Select1","SELECT * FROM PERSONAS WHERE NUMERO_DOCUMENTO = ?");
+        row.put("Insert1", "INSERT INTO alquiler_juegos.personas (NOMBRE,TIPO_DOCUMENTO,NUMERO_DOCUMENTO,FECHA_REGISTRO,DIRECCION,CELULAR) VALUES (?,?,?,?,?,?)");
+        row.put("Select1", "SELECT * FROM alquiler_juegos.personas WHERE NUMERO_DOCUMENTO = ?");
         return row;
     }
-        
+
 }

@@ -25,9 +25,10 @@ import java.util.Map;
  * @author rfranco
  */
 public class AlquilerDAO {
-                Conexion conexion = new Conexion();
 
-    public void insert(AlquilerDTO alquiler) {
+    Conexion conexion = new Conexion();
+
+    public void insert(AlquilerDTO alquiler) throws ClassNotFoundException {
 
         try {
             Connection connection = conexion.conn();
@@ -41,18 +42,18 @@ public class AlquilerDAO {
             pstmt.setString(5, alquiler.getEntregado());
             pstmt.setLong(6, alquiler.getValor_venta());
 
-            ResultSet rs = pstmt.executeQuery();
+            pstmt.executeUpdate();
             // Cerramos las conexiones, en orden inverso a su apertura
             pstmt.close();
             connection.close();
 
-            System.out.println("base de datos actualizada" + rs);
+            System.out.println("base de datos actualizada");
         } catch (SQLException e) {
             System.out.println("the exceptio update is=" + e);
         }
     }
-        
-    public List<Map<String, ?>> forList(int id_persona) {
+
+    public List<Map<String, ?>> forList(int id_persona) throws ClassNotFoundException {
 
         List<Map<String, ?>> lista;
 
@@ -75,7 +76,8 @@ public class AlquilerDAO {
         }
         return lista;
     }
-        public List<Map<String, ?>> forListDate(String date1, String date2) {
+
+    public List<Map<String, ?>> forListDate(String date1, String date2) throws ClassNotFoundException {
 
         List<Map<String, ?>> lista;
 
@@ -101,6 +103,7 @@ public class AlquilerDAO {
         }
         return lista;
     }
+
     public List<Map<String, ?>> rsToList(ResultSet rs)
             throws SQLException {
         ResultSetMetaData md = rs.getMetaData();
@@ -118,14 +121,14 @@ public class AlquilerDAO {
 
         return results;
     }
-    
-    private Map<String, ?> cargarQuerys (){
+
+    private Map<String, ?> cargarQuerys() {
         Map<String, Object> row = new HashMap<>();
-        row.put("Insert1","INSERT INTO ALQUILER (ID_ALQUILER, ID_PERSONA, ID_JUEGO, FECHA_ENTREGA, FECHA_REGISTRO, ENTREGADO, VALOR_VENTA) VALUES (S_ALQUILER_IDALQUILER.NEXTVAL,?, ?, ?, ?, ?, ?)");
-        row.put("Select1","SELECT * FROM ALQUILER WHERE ID_PERSONA = ?");
-        row.put("Select2","SELECT *  FROM ALQUILER  WHERE FECHA_REGISTRO BETWEEN to_date(? ,'dd/mm/yyyy') and to_date(?,'dd/mm/yyyy')");
-        
+        row.put("Insert1", "INSERT INTO alquiler_juegos.alquiler (ID_PERSONA, ID_JUEGO, FECHA_ENTREGA, FECHA_REGISTRO, ENTREGADO, VALOR_VENTA) VALUES (?, ?, ?, ?, ?, ?)");
+        row.put("Select1", "SELECT * FROM alquiler_juegos.alquiler WHERE ID_PERSONA = ?");
+        row.put("Select2", "SELECT *  FROM alquiler_juegos.alquiler  WHERE FECHA_REGISTRO  between cast(? as date) and cast(? as date)");
+
         return row;
     }
-        
+
 }

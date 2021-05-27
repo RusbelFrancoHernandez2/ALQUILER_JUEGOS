@@ -7,14 +7,12 @@ package DTO;
 
 import java.util.Date;
 
-
-
 /**
  *
  * @author rfranco
  */
 public class JuegosDTO {
-    
+
     private int id_juego;
     private String titulo;
     private String genero;
@@ -101,6 +99,5 @@ public class JuegosDTO {
     public String toString() {
         return "Juegos{" + "id_juego=" + id_juego + ", titulo=" + titulo + ", genero=" + genero + ", year=" + year + ", protagonistas=" + protagonistas + ", director=" + director + ", productor=" + productor + ", tecnologia=" + tecnologia + ", precio_alquiler=" + precio_alquiler + '}';
     }
-    
-       
+
 }

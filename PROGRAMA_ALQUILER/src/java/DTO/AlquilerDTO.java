@@ -7,14 +7,12 @@ package DTO;
 
 import java.util.Date;
 
-
-
 /**
  *
  * @author rfranco
  */
 public class AlquilerDTO {
-    
+
     private int id_alquiler;
     private int id_juego;
     private int id_persona;
@@ -83,5 +81,5 @@ public class AlquilerDTO {
     public String toString() {
         return "AlquilerDTO{" + "id_alquiler=" + id_alquiler + ", id_juego=" + id_juego + ", id_persona=" + id_persona + ", fecha_entrega=" + fecha_entrega + ", fecha_registro=" + fecha_registro + ", entregado=" + entregado + ", valor_venta=" + valor_venta + '}';
     }
-    
+
 }

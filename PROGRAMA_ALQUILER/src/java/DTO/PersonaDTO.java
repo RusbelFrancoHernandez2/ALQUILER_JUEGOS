@@ -7,14 +7,12 @@ package DTO;
 
 import java.util.Date;
 
-
-
 /**
  *
  * @author rfranco
  */
 public class PersonaDTO {
-    
+
     private int id_personas;
     private String nombre;
     private String tipo_documento;
@@ -82,6 +80,6 @@ public class PersonaDTO {
     @Override
     public String toString() {
         return "Personas{" + "id_personas=" + id_personas + ", nombre=" + nombre + ", tipo_documento=" + tipo_documento + ", numero_documento=" + numero_documento + ", fecha_registro=" + fecha_registro + ", direccion=" + direccion + ", celular=" + celular + '}';
-    }    
-    
+    }
+
 }
