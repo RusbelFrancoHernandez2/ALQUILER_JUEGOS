@@ -36,7 +36,7 @@ public class PersonaDAO {
             pstmt.setString(1, personas.getNombre());
             pstmt.setString(2, personas.getTipo_documento());
             pstmt.setString(3, personas.getNumero_documento());
-            pstmt.setTimestamp(4, new Timestamp(personas.getFecha_nacimiento().getTime()));
+            pstmt.setTimestamp(4, new Timestamp(personas.getFecha_registro().getTime()));
             pstmt.setString(5, personas.getDireccion());
             pstmt.setLong(6, personas.getCelular());
             ResultSet rs = pstmt.executeQuery();

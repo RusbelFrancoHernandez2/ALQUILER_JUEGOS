@@ -59,15 +59,9 @@ public class JuegosDAO {
 
             Map<String, ?> sql = cargarQuerys();
             PreparedStatement pstmt = connection.prepareStatement(sql.get("Update1").toString());
-            pstmt.setString(1, juegos.getTitulo());
-            pstmt.setString(2, juegos.getGenero());
-            pstmt.setTimestamp(3, new Timestamp(juegos.getYear().getTime()));
-            pstmt.setString(4, juegos.getProtagonistas());
-            pstmt.setString(5, juegos.getProductor());
-            pstmt.setString(6, juegos.getDirector());
-            pstmt.setString(7, juegos.getTecnologia());
-            pstmt.setLong(8, juegos.getPrecio_alquiler());
-            pstmt.setInt(9, juegos.getId_juego());
+
+            pstmt.setLong(1, juegos.getPrecio_alquiler());
+            pstmt.setInt(2, juegos.getId_juego());
             
             ResultSet rs = pstmt.executeQuery();
             // Cerramos las conexiones, en orden inverso a su apertura
@@ -103,15 +97,15 @@ public class JuegosDAO {
         return lista;
     }
     
-        public List<Map<String, ?>> selectJuego(String sentenciaSql,JuegosDTO juegos) {
+        public List<Map<String, ?>> selectJuego(int idJuego) {
 
         List<Map<String, ?>> lista;
 
         try {
             Connection connection = conexion.conn();
             Map<String, ?> sql = cargarQuerys();
-            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM JUEGOS WHERE ID_JUEGO = ?");
-            pstmt.setInt(1, juegos.getId_juego());
+            PreparedStatement pstmt = connection.prepareStatement(sql.get("Select1").toString());
+            pstmt.setInt(1, idJuego);
             ResultSet resultSet = pstmt.executeQuery();
             lista = rsToList(resultSet);
 
@@ -148,7 +142,7 @@ public class JuegosDAO {
         Map<String, Object> row = new HashMap<>();
         row.put("Insert1","INSERT INTO JUEGOS (ID_JUEGO, TITULO, GENERO, YEAR, PROTAGONISTAS, DIRECTOR, PRODUCTOR, TECNOLOGIA, PRECIO_ALQUILER) VALUES (S_JUEGOS_IDJUEGO.NEXTVAL,?,?,?,?,?,?,?,?)");
         row.put("Select1","SELECT * FROM JUEGOS WHERE ID_JUEGO = ?");
-        row.put("Update1","UPDATE JUEGOS SET TITULO = ?, GENERO = ?, YEAR = ?, PROTAGONISTAS = ?, DIRECTOR = ?, PRODUCTOR = ?, TECNOLOGIA = ?, PRECIO_ALQUILER = ? WHERE ID_JUEGO = ?");
+        row.put("Update1","UPDATE JUEGOS SET PRECIO_ALQUILER = ? WHERE ID_JUEGO = ?");
         row.put("Select2","SELECT * FROM JUEGOS");
         return row;
     }

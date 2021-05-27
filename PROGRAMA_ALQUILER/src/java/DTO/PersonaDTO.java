@@ -19,7 +19,7 @@ public class PersonaDTO {
     private String nombre;
     private String tipo_documento;
     private String numero_documento;
-    private Date fecha_nacimiento;
+    private Date fecha_registro;
     private String direccion;
     private long celular;
 
@@ -55,12 +55,12 @@ public class PersonaDTO {
         this.numero_documento = numero_documento;
     }
 
-    public Date getFecha_nacimiento() {
-        return fecha_nacimiento;
+    public Date getFecha_registro() {
+        return fecha_registro;
     }
 
-    public void setFecha_nacimiento(Date fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
+    public void setFecha_registro(Date fecha_registro) {
+        this.fecha_registro = fecha_registro;
     }
 
     public String getDireccion() {
@@ -81,7 +81,7 @@ public class PersonaDTO {
 
     @Override
     public String toString() {
-        return "Personas{" + "id_personas=" + id_personas + ", nombre=" + nombre + ", tipo_documento=" + tipo_documento + ", numero_documento=" + numero_documento + ", fecha_nacimiento=" + fecha_nacimiento + ", direccion=" + direccion + ", celular=" + celular + '}';
+        return "Personas{" + "id_personas=" + id_personas + ", nombre=" + nombre + ", tipo_documento=" + tipo_documento + ", numero_documento=" + numero_documento + ", fecha_registro=" + fecha_registro + ", direccion=" + direccion + ", celular=" + celular + '}';
     }    
     
 }

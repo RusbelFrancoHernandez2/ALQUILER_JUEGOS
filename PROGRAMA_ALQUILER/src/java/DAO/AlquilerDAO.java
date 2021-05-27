@@ -81,6 +81,8 @@ public class AlquilerDAO {
 
         try {
             Connection connection = conexion.conn();
+            System.out.println(date1);
+            System.out.println(date2);
             Map<String, ?> sql = cargarQuerys();
             PreparedStatement pstmt = connection.prepareStatement(sql.get("Select2").toString());
             pstmt.setString(1, date1);
@@ -92,7 +94,7 @@ public class AlquilerDAO {
             pstmt.close();
             connection.close();
 
-            System.out.println("datos consultados con éxito a la base de datos.");
+            System.out.println("datos consultados con éxito a la base de datos." + lista);
         } catch (SQLException e) {
             System.out.println("the exceptio forList is=" + e);
             lista = null;
@@ -119,7 +121,7 @@ public class AlquilerDAO {
     
     private Map<String, ?> cargarQuerys (){
         Map<String, Object> row = new HashMap<>();
-        row.put("Insert1","INSERT INTO ALQUILER (ID_ALQUILER, ID_PERSONA, ID_JUEGO, FECHA_ENTREGA, FECHA_REGISTRO, ENTREGADO, VALOR_VENTA) VALUES (S_PERSONAS_IDPERSONAS.NEXTVAL,?, ?, ?, ?, ?, ?)");
+        row.put("Insert1","INSERT INTO ALQUILER (ID_ALQUILER, ID_PERSONA, ID_JUEGO, FECHA_ENTREGA, FECHA_REGISTRO, ENTREGADO, VALOR_VENTA) VALUES (S_ALQUILER_IDALQUILER.NEXTVAL,?, ?, ?, ?, ?, ?)");
         row.put("Select1","SELECT * FROM ALQUILER WHERE ID_PERSONA = ?");
         row.put("Select2","SELECT *  FROM ALQUILER  WHERE FECHA_REGISTRO BETWEEN to_date(? ,'dd/mm/yyyy') and to_date(?,'dd/mm/yyyy')");
         
