@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://CONTROLADOR/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://CONTROLADOR/">
+
+<xs:element name="ClassNotFoundException" type="tns:ClassNotFoundException"/>
+
+<xs:element name="CrearAlquiler" type="tns:CrearAlquiler"/>
+
+<xs:element name="CrearAlquilerResponse" type="tns:CrearAlquilerResponse"/>
+
+<xs:element name="ParseException" type="tns:ParseException"/>
+
+<xs:element name="creacionJuego" type="tns:creacionJuego"/>
+
+<xs:element name="creacionJuegoResponse" type="tns:creacionJuegoResponse"/>
+
+<xs:element name="creacionPersona" type="tns:creacionPersona"/>
+
+<xs:element name="creacionPersonaResponse" type="tns:creacionPersonaResponse"/>
+
+<xs:element name="listarAlquilerDia" type="tns:listarAlquilerDia"/>
+
+<xs:element name="listarAlquilerDiaResponse" type="tns:listarAlquilerDiaResponse"/>
+
+<xs:element name="listarAlquilerPersona" type="tns:listarAlquilerPersona"/>
+
+<xs:element name="listarAlquilerPersonaResponse" type="tns:listarAlquilerPersonaResponse"/>
+
+<xs:element name="listarJuegos" type="tns:listarJuegos"/>
+
+<xs:element name="listarJuegosResponse" type="tns:listarJuegosResponse"/>
+
+<xs:element name="selectJuego" type="tns:selectJuego"/>
+
+<xs:element name="selectJuegoResponse" type="tns:selectJuegoResponse"/>
+
+<xs:element name="selectPersona" type="tns:selectPersona"/>
+
+<xs:element name="selectPersonaResponse" type="tns:selectPersonaResponse"/>
+
+<xs:element name="updateJuego" type="tns:updateJuego"/>
+
+<xs:element name="updateJuegoResponse" type="tns:updateJuegoResponse"/>
+
+<xs:complexType name="CrearAlquiler">
+<xs:sequence>
+<xs:element name="idPersona" type="xs:int"/>
+<xs:element name="idJuego" type="xs:int"/>
+<xs:element name="fechaEntrega" type="xs:string" minOccurs="0"/>
+<xs:element name="valorVenta" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CrearAlquilerResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ParseException">
+<xs:sequence>
+<xs:element name="errorOffset" type="xs:int"/>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ClassNotFoundException">
+<xs:sequence>
+<xs:element name="exception" type="tns:throwable" minOccurs="0"/>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="throwable">
+<xs:sequence>
+<xs:element name="stackTrace" type="tns:stackTraceElement" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="stackTraceElement" final="extension restriction">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listarAlquilerDia">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listarAlquilerDiaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:alquilerDTO" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="alquilerDTO">
+<xs:sequence>
+<xs:element name="entregado" type="xs:string" minOccurs="0"/>
+<xs:element name="fecha_entrega" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="fecha_registro" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="id_alquiler" type="xs:int"/>
+<xs:element name="id_juego" type="xs:int"/>
+<xs:element name="id_persona" type="xs:int"/>
+<xs:element name="valor_venta" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="selectJuego">
+<xs:sequence>
+<xs:element name="id_juego" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="selectJuegoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:juegosDTO" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="juegosDTO">
+<xs:sequence>
+<xs:element name="director" type="xs:string" minOccurs="0"/>
+<xs:element name="genero" type="xs:string" minOccurs="0"/>
+<xs:element name="id_juego" type="xs:int"/>
+<xs:element name="precio_alquiler" type="xs:long"/>
+<xs:element name="productor" type="xs:string" minOccurs="0"/>
+<xs:element name="protagonistas" type="xs:string" minOccurs="0"/>
+<xs:element name="tecnologia" type="xs:string" minOccurs="0"/>
+<xs:element name="titulo" type="xs:string" minOccurs="0"/>
+<xs:element name="year" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateJuego">
+<xs:sequence>
+<xs:element name="precio_alquiler" type="xs:long"/>
+<xs:element name="id_juego" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateJuegoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarAlquilerPersona">
+<xs:sequence>
+<xs:element name="numero_documento" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarAlquilerPersonaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:alquilerDTO" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="selectPersona">
+<xs:sequence>
+<xs:element name="numero_documento" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="selectPersonaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:personaDTO" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="personaDTO">
+<xs:sequence>
+<xs:element name="celular" type="xs:long"/>
+<xs:element name="direccion" type="xs:string" minOccurs="0"/>
+<xs:element name="fecha_registro" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="id_personas" type="xs:int"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="numero_documento" type="xs:string" minOccurs="0"/>
+<xs:element name="tipo_documento" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarJuegos">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listarJuegosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:juegosDTO" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="creacionPersona">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="tipo_documento" type="xs:string" minOccurs="0"/>
+<xs:element name="numero_documento" type="xs:string" minOccurs="0"/>
+<xs:element name="direccion" type="xs:string" minOccurs="0"/>
+<xs:element name="celular" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="creacionPersonaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="creacionJuego">
+<xs:sequence>
+<xs:element name="titulo" type="xs:string" minOccurs="0"/>
+<xs:element name="genero" type="xs:string" minOccurs="0"/>
+<xs:element name="year" type="xs:string" minOccurs="0"/>
+<xs:element name="protagonistas" type="xs:string" minOccurs="0"/>
+<xs:element name="director" type="xs:string" minOccurs="0"/>
+<xs:element name="productor" type="xs:string" minOccurs="0"/>
+<xs:element name="tecnologia" type="xs:string" minOccurs="0"/>
+<xs:element name="precio_alquiler" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="creacionJuegoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

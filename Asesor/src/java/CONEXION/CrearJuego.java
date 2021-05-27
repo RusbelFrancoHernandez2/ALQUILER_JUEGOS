@@ -5,6 +5,7 @@
  */
 package CONEXION;
 
+import controlador.ClassNotFoundException_Exception;
 import controlador.ParseException_Exception;
 import controlador.WebServiceAlquiler;
 import java.io.IOException;
@@ -37,7 +38,7 @@ public class CrearJuego extends HttpServlet {
      * @throws controlador.ParseException_Exception
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ParseException_Exception {
+            throws ServletException, IOException, ParseException_Exception, ClassNotFoundException_Exception {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -68,7 +69,7 @@ public class CrearJuego extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ParseException_Exception ex) {
+        } catch (ParseException_Exception | ClassNotFoundException_Exception ex) {
             Logger.getLogger(CrearJuego.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -86,7 +87,7 @@ public class CrearJuego extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ParseException_Exception ex) {
+        } catch (ParseException_Exception | ClassNotFoundException_Exception ex) {
             Logger.getLogger(CrearJuego.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -101,7 +102,7 @@ public class CrearJuego extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private String creacionJuego(java.lang.String titulo, java.lang.String genero, java.lang.String year, java.lang.String protagonistas, java.lang.String director, java.lang.String productor, java.lang.String tecnologia, long precioAlquiler) throws ParseException_Exception {
+    private String creacionJuego(java.lang.String titulo, java.lang.String genero, java.lang.String year, java.lang.String protagonistas, java.lang.String director, java.lang.String productor, java.lang.String tecnologia, long precioAlquiler) throws ParseException_Exception, ClassNotFoundException_Exception {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         controlador.WebServiceAsesor port = service.getWebServiceAsesorPort();

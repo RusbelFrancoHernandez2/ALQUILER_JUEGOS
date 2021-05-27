@@ -39,6 +39,7 @@ public class WebServiceAsesor {
      * @param direccion
      * @param celular
      * @return
+     * @throws java.lang.ClassNotFoundException
      */
     @WebMethod(operationName = "creacionPersona")
     public String creacionPersona(@WebParam(name = "nombre") String nombre, @WebParam(name = "tipo_documento") String tipo_documento, @WebParam(name = "numero_documento") String numero_documento, @WebParam(name = "direccion") String direccion, @WebParam(name = "celular") long celular) throws ClassNotFoundException {
@@ -70,6 +71,7 @@ public class WebServiceAsesor {
      * @param precio_alquiler
      * @return
      * @throws java.text.ParseException
+     * @throws java.lang.ClassNotFoundException
      */
     @WebMethod(operationName = "creacionJuego")
     public String creacionJuego(@WebParam(name = "titulo") String titulo, @WebParam(name = "genero") String genero, @WebParam(name = "year") String year, @WebParam(name = "protagonistas") String protagonistas, @WebParam(name = "director") String director, @WebParam(name = "productor") String productor, @WebParam(name = "tecnologia") String tecnologia, @WebParam(name = "precio_alquiler") long precio_alquiler) throws ParseException, ClassNotFoundException {
@@ -93,16 +95,10 @@ public class WebServiceAsesor {
     /**
      * Web service operation
      *
-     * @param titulo
-     * @param genero
-     * @param year
-     * @param protagonistas
-     * @param director
-     * @param productor
-     * @param tecnologia
      * @param precio_alquiler
      * @param id_juego
      * @return
+     * @throws java.lang.ClassNotFoundException
      */
     @WebMethod(operationName = "updateJuego")
     public String updateJuego(@WebParam(name = "precio_alquiler") long precio_alquiler, @WebParam(name = "id_juego") int id_juego) throws ClassNotFoundException {
@@ -121,37 +117,7 @@ public class WebServiceAsesor {
      * Web service operation
      *
      * @return
-     */
-    @WebMethod(operationName = "listarJuegos")
-    public List<JuegosDTO> listarJuegos() throws ClassNotFoundException {
-
-        JuegosDAO juegosDAO = new JuegosDAO();
-        List<JuegosDTO> list = new ArrayList<>();
-
-        List<Map<String, ?>> listaJuegos = juegosDAO.forList();
-
-        for (Map map : listaJuegos) {
-
-            JuegosDTO juegos = new JuegosDTO();
-            Timestamp stamp = Timestamp.valueOf(map.get("YEAR").toString());
-            juegos.setId_juego(Integer.parseInt(map.get("ID_JUEGO").toString()));
-            juegos.setTitulo(map.get("TITULO").toString());
-            juegos.setGenero(map.get("GENERO").toString());
-            juegos.setYear(new Date(stamp.getTime()));
-            juegos.setProtagonistas(map.get("PROTAGONISTAS").toString());
-            juegos.setDirector(map.get("DIRECTOR").toString());
-            juegos.setProductor(map.get("PRODUCTOR").toString());
-            juegos.setTecnologia(map.get("TECNOLOGIA").toString());
-            juegos.setPrecio_alquiler(Long.parseLong(map.get("PRECIO_ALQUILER").toString()));
-            list.add(juegos);
-        }
-        return list;
-    }
-
-    /**
-     * Web service operation
-     *
-     * @return
+     * @throws java.lang.ClassNotFoundException
      */
     @WebMethod(operationName = "listarAlquilerDia")
     public List<AlquilerDTO> listarAlquilerDia() throws ClassNotFoundException {
@@ -194,6 +160,7 @@ public class WebServiceAsesor {
      *
      * @param numero_documento
      * @return
+     * @throws java.lang.ClassNotFoundException
      */
     @WebMethod(operationName = "listarAlquilerPersona")
     public List<AlquilerDTO> listarAlquilerPersona(@WebParam(name = "numero_documento") String numero_documento) throws ClassNotFoundException {
@@ -232,6 +199,7 @@ public class WebServiceAsesor {
      * @param valorVenta
      * @return
      * @throws java.text.ParseException
+     * @throws java.lang.ClassNotFoundException
      */
     @WebMethod(operationName = "CrearAlquiler")
     public String CrearAlquiler(@WebParam(name = "idPersona") int idPersona, @WebParam(name = "idJuego") int idJuego, @WebParam(name = "fechaEntrega") String fechaEntrega, @WebParam(name = "valorVenta") long valorVenta) throws ParseException, ClassNotFoundException {
@@ -260,6 +228,7 @@ public class WebServiceAsesor {
      *
      * @param numero_documento
      * @return
+     * @throws java.lang.ClassNotFoundException
      */
     @WebMethod(operationName = "selectPersona")
     public List<PersonaDTO> selectPersona(@WebParam(name = "numero_documento") String numero_documento) throws ClassNotFoundException {
@@ -292,6 +261,7 @@ public class WebServiceAsesor {
      *
      * @param id_juego
      * @return
+     * @throws java.lang.ClassNotFoundException
      */
     @WebMethod(operationName = "selectJuego")
     public List<JuegosDTO> selectJuego(@WebParam(name = "id_juego") int id_juego) throws ClassNotFoundException {

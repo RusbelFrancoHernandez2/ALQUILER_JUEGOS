@@ -7,13 +7,11 @@ package DAO;
 
 import CONEXION.Conexion;
 import DTO.AlquilerDTO;
-import DTO.JuegosDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;

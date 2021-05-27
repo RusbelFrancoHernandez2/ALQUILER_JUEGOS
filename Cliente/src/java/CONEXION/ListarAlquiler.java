@@ -7,12 +7,15 @@ package CONEXION;
  */
 
 import controlador.AlquilerDTO;
+import controlador.ClassNotFoundException_Exception;
 import controlador.JuegosDTO;
 import controlador.WebServiceAlquiler;
 import controlador.WebServiceAsesor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,9 +39,10 @@ public class ListarAlquiler extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws controlador.ClassNotFoundException_Exception
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException_Exception {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -89,7 +93,11 @@ public class ListarAlquiler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException_Exception ex) {
+            Logger.getLogger(ListarAlquiler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -103,7 +111,11 @@ public class ListarAlquiler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException_Exception ex) {
+            Logger.getLogger(ListarAlquiler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -116,14 +128,14 @@ public class ListarAlquiler extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private java.util.List<AlquilerDTO> listarAlquilerPersona(java.lang.String numeroDocumento) {
+    private java.util.List<AlquilerDTO> listarAlquilerPersona(java.lang.String numeroDocumento) throws ClassNotFoundException_Exception {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         WebServiceAsesor port = service.getWebServiceAsesorPort();
         return port.listarAlquilerPersona(numeroDocumento);
     }
 
-    private java.util.List<JuegosDTO> selectJuego(int idJuego) {
+    private java.util.List<JuegosDTO> selectJuego(int idJuego) throws ClassNotFoundException_Exception {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         WebServiceAsesor port = service.getWebServiceAsesorPort();

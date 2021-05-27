@@ -5,6 +5,7 @@
  */
 package CONEXION;
 
+import controlador.ClassNotFoundException_Exception;
 import controlador.JuegosDTO;
 import controlador.ParseException_Exception;
 import controlador.PersonaDTO;
@@ -38,9 +39,10 @@ public class CrearAlquiler extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      * @throws controlador.ParseException_Exception
+     * @throws controlador.ClassNotFoundException_Exception
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ParseException_Exception {
+            throws ServletException, IOException, ParseException_Exception, ClassNotFoundException_Exception {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -92,7 +94,7 @@ public class CrearAlquiler extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ParseException_Exception ex) {
+        } catch (ParseException_Exception | ClassNotFoundException_Exception ex) {
             Logger.getLogger(CrearAlquiler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -110,7 +112,7 @@ public class CrearAlquiler extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ParseException_Exception ex) {
+        } catch (ParseException_Exception | ClassNotFoundException_Exception ex) {
             Logger.getLogger(CrearAlquiler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -125,21 +127,21 @@ public class CrearAlquiler extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private java.util.List<controlador.JuegosDTO> selectJuego(int idJuego) {
+    private java.util.List<controlador.JuegosDTO> selectJuego(int idJuego) throws ClassNotFoundException_Exception {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         controlador.WebServiceAsesor port = service.getWebServiceAsesorPort();
         return port.selectJuego(idJuego);
     }
 
-    private java.util.List<controlador.PersonaDTO> selectPersona(java.lang.String numeroDocumento) {
+    private java.util.List<controlador.PersonaDTO> selectPersona(java.lang.String numeroDocumento) throws ClassNotFoundException_Exception {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         controlador.WebServiceAsesor port = service.getWebServiceAsesorPort();
         return port.selectPersona(numeroDocumento);
     }
 
-    private String crearAlquiler(int idPersona, int idJuego, java.lang.String fechaEntrega, long valorVenta) throws ParseException_Exception {
+    private String crearAlquiler(int idPersona, int idJuego, java.lang.String fechaEntrega, long valorVenta) throws ParseException_Exception, ClassNotFoundException_Exception {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         controlador.WebServiceAsesor port = service.getWebServiceAsesorPort();
