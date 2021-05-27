@@ -24,10 +24,6 @@
 
 <xs:element name="listarAlquilerPersonaResponse" type="tns:listarAlquilerPersonaResponse"/>
 
-<xs:element name="listarJuegos" type="tns:listarJuegos"/>
-
-<xs:element name="listarJuegosResponse" type="tns:listarJuegosResponse"/>
-
 <xs:element name="selectJuego" type="tns:selectJuego"/>
 
 <xs:element name="selectJuegoResponse" type="tns:selectJuegoResponse"/>
@@ -173,16 +169,6 @@
 <xs:element name="nombre" type="xs:string" minOccurs="0"/>
 <xs:element name="numero_documento" type="xs:string" minOccurs="0"/>
 <xs:element name="tipo_documento" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="listarJuegos">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="listarJuegosResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:juegosDTO" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 

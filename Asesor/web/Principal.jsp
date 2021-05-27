@@ -12,9 +12,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-                                        <form id="formsignup" method="post" action="/Asesor/InformeVenta">
-                                                                                <button class="btn btn-lg btn-dark btn-block" type="submit"
-                                            id="signUpUser">Informe venta</button>
-                                </form>
+        <input type="button" onclick=" location.href = '/Asesor/page/CrearAlquiler.jsp'" value="crear compra" name="boton">
+        <input type="button" onclick=" location.href = '/Asesor/page/CrearJuego.jsp'" value="crear juego" name="boton">
+        <input type="button" onclick=" location.href = '/Asesor/page/CrearPersona.jsp'" value="crear Persona" name="boton">
+        <input type="button" onclick=" location.href = '/Asesor/page/ModificarPrecio.jsp'" value="modificar juego" name="boton">
+        <form id="formsignup" method="post" action="/Asesor/InformeVenta">
+            <button class="btn btn-lg btn-dark btn-block" type="submit"
+                    id="signUpUser">Informe venta</button>
+        </form>
     </body>
 </html>

@@ -45,5 +45,6 @@
                 </div>
             </section>
         </main>
+        <input type="button" onclick=" location.href = '/Asesor/Principal.jsp'" value="regresar" name="boton">
     </body>
 </html>

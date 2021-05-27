@@ -70,6 +70,7 @@ public class InformeVenta extends HttpServlet {
             out.println("</tr>");
             }
             out.println("</table>");
+            out.println("<input type=\"button\" onclick=\" location.href = '/Asesor/page/ModificarPrecio.jsp'\" value=\"regresar\" name=\"boton\">");
             out.println("</body>");
             out.println("</html>");
         }

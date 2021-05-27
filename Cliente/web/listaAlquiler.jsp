@@ -30,7 +30,7 @@
                                         <label for="inputid">Numero Documento</label>
                                     </div>
                                     <button class="btn btn-lg btn-dark btn-block" type="submit"
-                                            id="signUpUser">Registrar</button>
+                                            id="signUpUser">Consuultar</button>
                                 </form>
                             </div>
                         </div>

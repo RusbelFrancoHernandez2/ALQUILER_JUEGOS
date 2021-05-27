@@ -21,7 +21,7 @@
                                 <!-- Background image for card set in CSS! -->
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title text-center">Registrar persona</h5>
+                                <h5 class="card-title text-center">Registrar Compra</h5>
                                 <form id="formsignup" method="post" action="/Asesor/CrearAlquiler">
 
                                     <div class="form-label-group">
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </section>
-
         </main>
+        <input type="button" onclick=" location.href = '/Asesor/Principal.jsp'" value="regresar" name="boton">
     </body>
 </html>

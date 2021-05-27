@@ -48,7 +48,8 @@ public class ModificarPrecio extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ModificarPrecio at " + status + "</h1>");
-            out.println("</body>");
+            out.println("<input type=\"button\" onclick=\" location.href = '/Asesor/Principal.jsp'\" value=\"regresar\" name=\"boton\">");
+             out.println("</body>");
             out.println("</html>");
         }
     }

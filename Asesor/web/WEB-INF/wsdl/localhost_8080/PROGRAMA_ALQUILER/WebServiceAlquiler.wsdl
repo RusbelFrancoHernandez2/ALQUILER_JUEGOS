@@ -52,12 +52,6 @@
 <message name="selectJuegoResponse">
 <part name="parameters" element="tns:selectJuegoResponse"/>
 </message>
-<message name="listarJuegos">
-<part name="parameters" element="tns:listarJuegos"/>
-</message>
-<message name="listarJuegosResponse">
-<part name="parameters" element="tns:listarJuegosResponse"/>
-</message>
 <message name="CrearAlquiler">
 <part name="parameters" element="tns:CrearAlquiler"/>
 </message>
@@ -100,11 +94,6 @@
 <input wsam:Action="http://CONTROLADOR/WebServiceAsesor/selectJuegoRequest" message="tns:selectJuego"/>
 <output wsam:Action="http://CONTROLADOR/WebServiceAsesor/selectJuegoResponse" message="tns:selectJuegoResponse"/>
 <fault message="tns:ClassNotFoundException" name="ClassNotFoundException" wsam:Action="http://CONTROLADOR/WebServiceAsesor/selectJuego/Fault/ClassNotFoundException"/>
-</operation>
-<operation name="listarJuegos">
-<input wsam:Action="http://CONTROLADOR/WebServiceAsesor/listarJuegosRequest" message="tns:listarJuegos"/>
-<output wsam:Action="http://CONTROLADOR/WebServiceAsesor/listarJuegosResponse" message="tns:listarJuegosResponse"/>
-<fault message="tns:ClassNotFoundException" name="ClassNotFoundException" wsam:Action="http://CONTROLADOR/WebServiceAsesor/listarJuegos/Fault/ClassNotFoundException"/>
 </operation>
 <operation name="CrearAlquiler">
 <input wsam:Action="http://CONTROLADOR/WebServiceAsesor/CrearAlquilerRequest" message="tns:CrearAlquiler"/>
@@ -191,18 +180,6 @@
 </fault>
 </operation>
 <operation name="selectJuego">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="ClassNotFoundException">
-<soap:fault name="ClassNotFoundException" use="literal"/>
-</fault>
-</operation>
-<operation name="listarJuegos">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

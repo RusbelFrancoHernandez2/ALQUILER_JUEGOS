@@ -75,6 +75,7 @@ public class CrearAlquiler extends HttpServlet {
             out.println("<td>"+juego.get(0).getPrecioAlquiler()+"</td>"); 
             out.println("</tr>");
             out.println("</table>");
+            out.println("<input type=\"button\" onclick=\" location.href = '/Asesor/page/CrearAlquiler.jsp'\" value=\"regresar\" name=\"boton\">");
             out.println("</body>");
             out.println("</html>");
         }
